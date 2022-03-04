@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="subjects_view_tree" model="ir.ui.view">
+            <field name="name">subjects_view_tree</field>
+            <field name="model">subjects.management</field>
+            <field name="arch" type="xml">
+                <tree string="Môn học">
+                    <field name="name"/>
+                    <field name="code_subjects"/>
+                    <field name="description_subjects"/>
+                    <field name="number_lessons"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="subjects_view_form" model="ir.ui.view">
+            <field name="name">subjects_view_form</field>
+            <field name="model">subjects.management</field>
+            <field name="arch" type="xml">
+                <form string="Môn học">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code_subjects"/>
+                            </group>
+                            <group>
+                                <field name="number_lessons"/>
+                                <field name="description_subjects"/>
+                            </group>
+                                <field name="manage_class_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="subjects_search" model="ir.ui.view">
+           <field name="name">Quản lý giáo dục</field>
+           <field name="model">subjects.management</field>
+            <field name="arch" type="xml">
+                <search >
+                    <field name="name" string="Quản lý môn học" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="code_subjects" string="Mã môn học" filter_domain="[('code_subjects', 'ilike', self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="education_management_action" model="ir.actions.act_window">
+            <field name="name">Quản lý giáo dục</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">subjects.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="education_management_root_menu"
+                  name="Quản lý giáo dục"
+                  sequence="1"/>
+
+        <menuitem id="subjects_management_parent"
+                  name="Quản lý môn học"
+                  parent="education_management.education_management_root_menu"
+                  action="education_management.education_management_action"
+                  sequence="3"/>
+    </data>
+</odoo>

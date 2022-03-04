@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="classroom_view_tree" model="ir.ui.view">
+            <field name="name">classroom_view_tree</field>
+            <field name="model">classroom</field>
+            <field name="arch" type="xml">
+                <tree string="classroom_tree">
+                    <field name="name"/>
+                    <field name="location_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="classroom_view_form" model="ir.ui.view">
+            <field name="name">classroom_view_form</field>
+            <field name="model">classroom</field>
+            <field name="arch" type="xml">
+                <form string="classroom_form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="location_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="classroom_search" model="ir.ui.view">
+            <field name="name">Phòng học</field>
+            <field name="model">classroom</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Tên lớp" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="location_id" string="Địa điểm" filter_domain="[('location_id', 'ilike', self)]"/>
+                    <group>
+                        <filter string='Địa điểm' name="location_id" context="{'group_by': 'location_id'}"/>
+                    </group>
+                </search>
+           </field>
+        </record>
+
+        <record id="classroom_action" model="ir.actions.act_window">
+            <field name="name">Lớp học</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">classroom</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="classroom_root_menu"
+                  name="Phòng học"
+                  parent="education_management.education_management_root_menu"
+                  action="education_management.classroom_action"
+                  sequence="2"/>
+        <!-- This Menu Item must have a parent and an action -->
+
+        <menuitem id="classroom_menu_categ"
+                  name="Phòng học"
+                  parent="education_management.classroom_root_menu"
+                  action="education_management.classroom_action"
+                  sequence="2"/>
+
+        <menuitem id="location_included_menu_categ"
+                  name="Địa điểm"
+                  parent="education_management.classroom_root_menu"
+                  action="education_management.location_included_action"
+                  sequence="2"/>
+    </data>
+</odoo>

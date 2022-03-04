@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="manage_class_view_tree" model="ir.ui.view">
+            <field name="name">manage_class_view_tree</field>
+            <field name="model">manage.class</field>
+            <field name="arch" type="xml">
+                <tree string="manage_class_tree">
+                    <field name="name" optional="show"/>
+                    <field name="code_class" optional="show"/>
+                    <field name="subjects_id" optional="show"/>
+                    <field name="number_lessons" optional="show"/>
+                    <field name="opening_day" optional="show"/>
+                    <field name="end_date" optional="show"/>
+                    <field name="lesson" optional="show"/>
+                    <field name="repeat_weekday" optional="show"/>
+                    <field name="location_id" optional="show"/>
+                    <field name="classroom_id" optional="show"/>
+                    <field name="employee_id" optional="show"/>
+                    <field name="tutor_id" optional="show"/>
+                    <field name="note" optional="hide"/>
+                    <field name="state" optional="show"/>
+                </tree>
+            </field>
+        </record>
+        <record id="manage_class_view_form" model="ir.ui.view">
+            <field name="name">manage_class_view_form</field>
+            <field name="model">manage.class</field>
+            <field name="arch" type="xml">
+                <form string="manage_class_form">
+                    <header>
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+<!--                        statusbar_visible="s2,s3,s4"-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code_class"/>
+                                <field name="subjects_id"/>
+                                <field name="number_lessons"/>
+                                <field name="opening_day"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                                <field name="repeat_weekday"/>
+                                <field name="lesson"/>
+                                <field name="location_id"/>
+                                <field name="classroom_id"/>
+                                <field name="employee_id"/>
+                                <field name="tutor_id"/>
+                            </group>
+                        </group>
+                        <field name="note" placeholder="Ghi chú ....."/>
+                        <notebook>
+                            <page string="Thông tin lịch học">
+                                <field name="schedule_learn_ids"></field>
+                            </page>
+                            <page string="Thông tin học viên">
+                                <field name="student_list_ids"></field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="manage_class_search" model="ir.ui.view">
+            <field name="name">Quản lý lớp </field>
+            <field name="model">manage.class</field>
+            <field name="arch" type="xml">
+                <search >
+                    <field name="name" string="Tên lớp" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="code_class" string="Mã"/>
+                    <field name="subjects_id" string="Môn học" filter_domain="[('subjects_id', 'ilike', self)]"/>
+                    <field name="lesson" string="Ca học" filter_domain="[('lesson', 'ilike', self)]"/>
+                    <field name="repeat_weekday" string="Thứ trong tuần" filter_domain="[('repeat_weekday', 'ilike', self)]"/>
+                    <field name="location_id" string="Địa điểm" filter_domain="[('location_id', 'ilike', self)]"/>
+                    <field name="classroom_id" string="Phòng học" filter_domain="[('classroom_id', 'ilike', self)]"/>
+                    <field name="employee_id" string="Giảng viên" filter_domain="[('employee_id', 'ilike', self)]"/>
+                    <field name="tutor_id" string="Trợ giảng" filter_domain="[('tutor_id', 'ilike', self)]"/>
+                    <field name="employee_id" string="Giảng viên" filter_domain="[('employee_id', 'ilike', self)]"/>
+                    <separator/>
+                        <filter string="Ngày bắt đầu" name="opening_day" date="opening_day" default_period="this_month"/>
+                        <filter name="Ngày kết thúc" date="end_date"/>
+                    <separator/>
+                        <filter string="Trạng thái Dự thảo" name="state" domain="[('state', '=', 's1')]"/>
+                        <filter string="Trạng thái Chuẩn bị" name="state" domain="[('state', '=', 's2')]"/>
+                        <filter string="Trạng thái Đang học" name="state" domain="[('state', '=', 's3')]"/>
+                        <filter string="Trạng thái Đã tốt nghiẹp" name="state" domain="[('state', '=', 's4')]"/>
+                        <filter string="Trạng thái Hủy" name="state" domain="[('state', '=', 's5')]"/>
+                    <separator/>
+                        <filter string="Ca sáng" name="lesson" domain="[('lesson', '=', 'mor')]"/>
+                        <filter string="Ca chiều" name="lesson" domain="[('lesson','=','after')]"/>
+                        <filter string="Ca tối" name="lesson" domain="[('lesson','=','night')]"/>
+                    <group string="Nhóm">
+                        <filter string='Ca học' name="lesson" context="{'group_by': 'lesson'}"/>
+                        <filter string='Thứ trong tuần' name="repeat_weekday" context="{'group_by': 'repeat_weekday'}"/>
+                        <filter string='Địa điểm' name="location_id" context="{'group_by': 'location_id'}"/>
+                        <filter string='Phòng học' name="classroom_id" context="{'group_by': 'classroom_id'}"/>
+                        <separator/>
+                        <filter string='Giảng viên' name="employee_id" context="{'group_by': 'employee_id'}"/>
+                        <filter string='Trợ giảng' name="tutor_id" context="{'group_by': 'tutor_id'}"/>
+                        <filter string='Trạng thái' name="state" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+           </field>
+        </record>
+
+        <record id="manage_class_action" model="ir.actions.act_window">
+            <field name="name">Quản lý lớp học</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">manage.class</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="manage_class_menu_root"
+                  name="Quản lý lớp học"
+                  parent="education_management.education_management_root_menu"
+                  action="education_management.manage_class_action"
+                  sequence="1"/>
+
+        <menuitem id="manage_class_menu_categ"
+                  name="Quản lý lớp học"
+                  parent="education_management.manage_class_menu_root"
+                  action="education_management.manage_class_action"
+                  sequence="1"/>
+
+        <menuitem id="schedule_learn_menu_categ"
+                  name="Lịch trình học"
+                  parent="education_management.manage_class_menu_root"
+                  action="education_management.schedule_learn_action"
+                  sequence="2"/>
+    </data>
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_subject_admin,access_subject_admin,model_subjects_management,base.group_user,1,1,1,1
+access_location_included_admin,access_location_included_admin,model_location_included,base.group_user,1,1,1,1
+access_classroom_admin,access_classroom_admin,model_classroom,base.group_user,1,1,1,1
+access_schedule_learn_admin,access_schedule_learn_admin,model_schedule_learn,base.group_user,1,1,1,1
+access_manage_class_admin,access_manage_class_admin,model_manage_class,base.group_user,1,1,1,1
+access_res_hr_employee_admin,access_res_hr_employee_admin,model_hr_employee,base.group_user,1,1,1,1

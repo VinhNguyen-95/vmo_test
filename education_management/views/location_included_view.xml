@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="location_included_view_tree" model="ir.ui.view">
+            <field name="name">location_included_view_tree</field>
+            <field name="model">location.included</field>
+            <field name="arch" type="xml">
+                <tree string="location_included_tree">
+                    <field name="name"/>
+                    <field name="code_location"/>
+                </tree>
+            </field>
+        </record>
+        <record id="location_included_view_form" model="ir.ui.view">
+            <field name="name">location_included_view_form</field>
+            <field name="model">location.included</field>
+            <field name="arch" type="xml">
+                <form string="location_included_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code_location"/>
+                            </group>
+                            <group></group>
+                        </group>
+                        <notebook>
+                            <page string="Lớp học">
+                                <field name="classroom_ids"></field>
+                            </page>
+                            <page string="Quản lý lớp">
+                                <field name="manage_class_ids"></field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="location_included_search" model="ir.ui.view">
+            <field name="name">Địa điểm</field>
+            <field name="model">location.included</field>
+            <field name="arch" type="xml">
+                <search >
+                    <field name="name" string="Tên địa điểm" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="code_location" string="Mã"/>
+                </search>
+           </field>
+        </record>
+
+        <record id="location_included_action" model="ir.actions.act_window">
+            <field name="name">Địa điểm</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">location.included</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>
