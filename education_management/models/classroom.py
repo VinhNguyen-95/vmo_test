@@ -2,6 +2,7 @@ from odoo import fields, models, api
 
 
 class Classroom(models.Model):
+    # Todo tên model nên đặt có 2 từ trở lên vd: xxx.yyy
     _name = 'classroom'
     _description = 'Phòng học'
 

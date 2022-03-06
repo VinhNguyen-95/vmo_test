@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/subjects_views.xml',
+        # Todo không thấy file xml schedule_learn?
         'views/schedule_learn.xml',
         'views/manage_class_view.xml',
         'views/location_included_view.xml',

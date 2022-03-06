@@ -46,3 +46,5 @@ class ManageClass(models.Model):
     #Thông tin học viên
     student_list_ids = fields.Many2many('res.partner')
 
+    # todo chưa có logic thứ trong tuần tự động nhảy theo ngày
+

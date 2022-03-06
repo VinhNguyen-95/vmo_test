@@ -2,6 +2,7 @@ from odoo import fields, models, api
 
 
 class Employee(models.Model):
+    # Todo nên đặt tên file là hr_employee
     _inherit = 'hr.employee'
     _description = 'custom bảng hr employee'
 

@@ -115,6 +115,8 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+<!--    Todo: menu nên để ở file riêng và trong manifest nên đặt cuối cùng trong tập views-->
+
         <menuitem id="manage_class_menu_root"
                   name="Quản lý lớp học"
                   parent="education_management.education_management_root_menu"

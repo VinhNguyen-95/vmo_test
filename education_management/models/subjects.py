@@ -2,6 +2,7 @@ from odoo import fields, models, api
 
 
 class Subjects(models.Model):
+    # Todo tên file python nên đặt theo tên model chính để dễ tìm, TH này nên đặt tên file là subjects_management
     _name = 'subjects.management'
     _description = 'Quản lý môn học'
 
